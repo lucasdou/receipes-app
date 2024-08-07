@@ -14,6 +14,10 @@ export class DataService {
     return this.receipes;
   }
 
+  addObject(newObject: any) {
+    this.receipes.push(newObject);
+  }
+
   setObject(newObject: any) {
     this.receipes = newObject;
   }

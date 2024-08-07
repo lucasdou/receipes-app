@@ -1,4 +1,5 @@
 <div class="list-group">
+    <button (click)="requestAddObject()">Add Object</button>
     @for (receipe of data; track $index) {
         <div class="list-group-item">
             <p>{{receipe.name}}</p>

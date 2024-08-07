@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-list-item',
@@ -9,4 +9,10 @@ import { Component, Input } from '@angular/core';
 })
 export class ListItemComponent {
   @Input() data: any;
+  @Output() addObjectRequest = new EventEmitter<any>();
+
+  requestAddObject() {
+    const newObject = { name: 'receipe1', description: 'description1', ingredients: 'ingredients1', instructions: 'instructions1'};
+    this.addObjectRequest.emit(newObject);
+  }
 }

@@ -2,7 +2,7 @@
   <div class="content">
     <h1>Receipes App</h1>
     <div class="my-list">
-          <app-list-item [data]="myDataService"></app-list-item>
+          <app-list-item [data]="myData" (addObjectRequest)="addObject($event)"/>
     </div>   
   </div>
 </main>
