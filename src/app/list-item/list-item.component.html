@@ -2,6 +2,7 @@
     <button (click)="requestAddObject()">Add Object</button>
     @for (receipe of data; track $index) {
         <div class="list-group-item">
+            <button (click)="requestDeleteObject(receipe.id)">Delete Object</button>
             <p>{{receipe.name}}</p>
             <p>{{receipe.description}}</p>
         </div>

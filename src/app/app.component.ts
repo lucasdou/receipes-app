@@ -26,6 +26,12 @@ ngOnInit(): void {
 
 addObject(newObject: any) {
   this.myDataService.addObject(newObject);
+  this.myData = this.dataService.getObject();
+}
+
+deleteObject(newObject: any) {
+  this.myDataService.deleteObjectById(newObject);
+  this.myData = this.dataService.getObject();
 }
 }
 
