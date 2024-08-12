@@ -1,6 +1,6 @@
 <main class="main">
   <div class="content">
-    <h1>Receipes App</h1>
+    <app-navbar></app-navbar>
     <div class="container">
       <div class="list-item-component">
         <app-list-item [receipesList]="receipesList" (addObjectRequest)="addObject($event)" (deleteObjectRequest)="deleteObject($event)"></app-list-item>

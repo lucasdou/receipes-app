@@ -1,15 +1,26 @@
-.container {
-  display: flex;
-  justify-content: space-between;
+main{
+  height: 100vh;
 }
 
-.list-item-component {
-  flex: 2;
+
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
+nav{
+  flex: 1;
+}
+
+.container {
+  flex: 1;
+  display: flex;
 }
 
 .my-list {
   flex: 1;
-  display: flex;
-  flex-direction: column;
-  margin: 0 10px;
+}
+
+.list-item-component {
+  flex: 2;
 }
