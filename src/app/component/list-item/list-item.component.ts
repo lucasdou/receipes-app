@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Receipe } from '../../object/Receipe';
 
 @Component({
   selector: 'app-list-item',
@@ -8,17 +9,20 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrl: './list-item.component.css'
 })
 export class ListItemComponent {
-  @Input() data: any;
-  @Output() addObjectRequest = new EventEmitter<Object>();
+  @Input() receipesList: Array<Receipe>;
+  @Output() addObjectRequest = new EventEmitter<Receipe>();
   @Output() deleteObjectRequest = new EventEmitter<number>();
 
+  constructor() {
+    this.receipesList = new Array<Receipe>();
+  }
+
   requestAddObject() {
-    const newObject = { name: 'receipe1', description: 'description1', ingredients: 'ingredients1', instructions: 'instructions1'};
+    const newObject: Receipe = { name: 'receipe1', description: 'description1',  ingredients: ['ingredients1', 'inredient2'], instructions: 'instructions1'};
     this.addObjectRequest.emit(newObject);
   }
 
   requestDeleteObject(id: number) {
-    console.log(id);
     this.deleteObjectRequest.emit(id);
   }
 }

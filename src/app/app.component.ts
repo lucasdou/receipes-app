@@ -1,38 +1,34 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { ListItemComponent } from './list-item/list-item.component';
+import { ListItemComponent } from './component/list-item/list-item.component';
 import { DataService } from './service/data.service';
+import { MyListComponent } from './component/my-list/my-list.component';
+import { Receipe } from './object/Receipe';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, ListItemComponent],
+  imports: [RouterOutlet, ListItemComponent, MyListComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
 })
 
 export class AppComponent {
   title = 'receipes-app';
-  public myDataService : any;
-  public myData : any;
 
+  public myDataService: DataService;
+  public receipesList: Array<Receipe>;
 
-constructor(private dataService: DataService) {}
+  constructor(private dataService: DataService) {
+    this.myDataService = this.dataService;
+    this.receipesList = this.dataService.getReceipesList();
+  }
 
-ngOnInit(): void {
-  this.myDataService = this.dataService;
-  this.myData = this.dataService.getObject();
+  addObject(newReceipe: Receipe) {
+    this.receipesList = this.myDataService.addObject(newReceipe);
+  }
+
+  deleteObject(id: number) {
+    this.receipesList = this.myDataService.deleteObjectById(id);
+  }
 }
-
-addObject(newObject: any) {
-  this.myDataService.addObject(newObject);
-  this.myData = this.dataService.getObject();
-}
-
-deleteObject(newObject: any) {
-  this.myDataService.deleteObjectById(newObject);
-  this.myData = this.dataService.getObject();
-}
-}
-
-

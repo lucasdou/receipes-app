@@ -1,34 +1,50 @@
 import { Injectable } from '@angular/core';
+import { Receipe } from '../object/Receipe';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DataService {
-  public receipes = [
-    {id: 0, name: 'receipe1', description: 'description1', ingredients: 'ingredients1', instructions: 'instructions1'},
-    {id: 1, name: 'receipe2', description: 'description2', ingredients: 'ingredients2', instructions: 'instructions2'},
-    {id: 2, name: 'receipe3', description: 'description3', ingredients: 'ingredients3', instructions: 'instructions3'}
-];
+  public receipesList: Array<Receipe>;
 
-private index = 2;
-
-  getObject() {
-    return this.receipes;
+  constructor() {
+    this.receipesList = [
+      {
+        id: 0,
+        name: 'receipe1',
+        description: 'description1',
+        ingredients: ['ingredients1', 'inredient2'],
+        instructions: 'instructions1',
+      },
+      {
+        id: 1,
+        name: 'receipe2',
+        description: 'description2',
+        ingredients: ['ingredients2', 'inredient3'],
+        instructions: 'instructions2',
+      },
+      {
+        id: 2,
+        name: 'receipe3',
+        description: 'description3',
+        ingredients: ['ingredients1', 'inredient3'],
+        instructions: 'instructions3',
+      },
+    ];
   }
 
-  addObject(newObject: any) {
-    newObject.id = this.index++;
-    console.log(this.index); // Corrected from print to console.log
-    this.receipes.push(newObject);
+  getReceipesList() {
+    return this.receipesList;
+  }
+
+  addObject(newReceipe: Receipe) {
+    newReceipe.id = this.receipesList.length
+    this.receipesList.push(newReceipe);
+    return this.receipesList;
   }
 
   deleteObjectById(id: number) {
-    console.log(id);
-    this.receipes = this.receipes.filter((item) => item.id !== id);
-    console.log(this.receipes);
-  }
-
-  setObject(newObject: any) {
-    this.receipes = newObject;
+    this.receipesList = this.receipesList.filter((item) => item.id !== id);
+    return this.receipesList;
   }
 }
