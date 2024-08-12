@@ -8,6 +8,7 @@
                     <li>{{ingredient}}</li>
                 }
             </ul>
+            <button (click)="item.id !== undefined && deleteObject(item.id)">Remove Object</button>
         </div>
     }
 </div>

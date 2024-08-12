@@ -21,4 +21,9 @@ export class MyListComponent {
     this.myList.push(newObject);
     console.log('deleteObject');
   }
+
+  deleteObject(id: number) {
+    console.log('deleteObject', id);
+    this.myList = this.myList.filter((item) => item.id !== id);
+  }
 }
