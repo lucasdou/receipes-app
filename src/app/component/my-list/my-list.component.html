@@ -1,4 +1,5 @@
 <div class="list-group">
+    <button (click)="exportListInATxtFile()">Download List as TXT</button>
     @for (item of myList; track $index) {
         <div class="list-group-item">
             <h3>{{item.name}}</h3>

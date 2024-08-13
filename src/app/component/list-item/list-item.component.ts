@@ -33,6 +33,7 @@ export class ListItemComponent {
 
   // Delete request for a receipe with it's id is emitted to the parent component
   requestDeleteObject(id: number) {
+    this.myListService.deleteObjectById(id);
     this.receipesList = this.myDataService.deleteObjectById(id);
   }
 
