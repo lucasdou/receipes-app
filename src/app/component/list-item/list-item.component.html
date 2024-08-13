@@ -1,11 +1,24 @@
 <div class="list-group">
-    <button (click)="requestAddObject()">Add Object</button>
-    @for (receipe of receipesList; track $index) {
-        <div class="list-group-item">
-            <button (click)="receipe.id !== undefined && requestDeleteObject(receipe.id)">Delete Object</button>
-            <p>{{receipe.name}}</p>
-            <p>{{receipe.description}}</p>
-        </div>
-    }
+  <button (click)="requestAddObject()">Add Object</button>
+  @for (receipe of receipesList; track $index) {
+  <div class="list-group-item">
+    <div class="header">
+      <p>{{ receipe.name }}</p>
+      <div class="buttons">
+        <button (click)="receipe.id !== undefined && requestDeleteObject(receipe.id)">
+          Delete Object
+        </button>
+        <button
+          (click)="isInMyList(receipe)
+              ? receipe.id !== undefined && removeReceipeFromMyList(receipe.id)
+              : requestReceipeToMyList(receipe)">
+          {{ isInMyList(receipe) ? "Remove from My List" : "Add to My List" }}
+        </button>
+      </div>
+    </div>
+    <div class="description">
+      <p>{{ receipe.description }}</p>
+    </div>
+  </div>
+  }
 </div>
-

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Receipe } from '../object/Receipe';
+import { Receipe } from '../../object/Receipe';
 
 @Injectable({
   providedIn: 'root',
@@ -37,13 +37,13 @@ export class DataService {
     return this.receipesList;
   }
 
-  addObject(newReceipe: Receipe) {
+  addObject(newReceipe: Receipe) : Array<Receipe>{
     newReceipe.id = this.receipesList.length
     this.receipesList.push(newReceipe);
     return this.receipesList;
   }
 
-  deleteObjectById(id: number) {
+  deleteObjectById(id: number) : Array<Receipe>{
     this.receipesList = this.receipesList.filter((item) => item.id !== id);
     return this.receipesList;
   }
