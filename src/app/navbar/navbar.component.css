@@ -2,25 +2,14 @@
 .navbar {
   width: 100%;
   background-color: #333;
-  color: white;
   padding: 10px 0;
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 1000;
-}
-
-.navbar-container {
+  height: 30px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  padding: 0 20px;
-}
-
-.navbar-brand {
-  font-size: 1.5em;
-  color: white;
-  text-decoration: none;
 }
 
 .navbar-nav {

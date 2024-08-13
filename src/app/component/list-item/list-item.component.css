@@ -1,7 +1,25 @@
-.list-group-item{
-    padding: 5px;
-    margin-bottom: 5px;
-    background-color: lightcyan;
-    border: solid black 1px;
-    border-radius: 2px;
+.list-group-item {
+  padding: 10px;
+  margin-bottom: 5px;
+  background-color: lightcyan;
+  border: solid black 1px;
+  border-radius: 2px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 5px;
+}
+
+.list-group-item .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.list-group-item .description {
+  margin-top: 10px;
+}
+
+.list-group-item .header .buttons {
+    display: flex;
+    flex-direction: column;
 }

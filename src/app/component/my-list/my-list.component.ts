@@ -1,5 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Receipe } from '../../object/Receipe';
+import { MyListService } from '../../service/mylist/my-list.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-my-list',
@@ -9,21 +11,32 @@ import { Receipe } from '../../object/Receipe';
   styleUrl: './my-list.component.css'
 })
 export class MyListComponent {
-  myList: Array<Receipe>;
-  @Input() myListItem?: Receipe;
+  public myListService: MyListService;
 
-  constructor() {
-    this.myList = new Array<Receipe>();
+  myList: Array<Receipe>;
+  private subscription: Subscription;
+
+  constructor(listService: MyListService) {
+    this.myListService = listService;
+    this.myList = this.myListService.getMyReceipesList();
+    this.subscription = new Subscription();
   }
 
-  requestAddObject() {
-    const newObject: Receipe = { id: this.myList.length, name: 'receipe1', description: 'description1', ingredients: ['ingredients1', 'inredient2'], instructions: 'instructions1'};
-    this.myList.push(newObject);
-    console.log('deleteObject');
+  ngOnInit(): void {
+    this.subscription = this.myListService.myList$.subscribe(
+      (list: Array<Receipe>) => {
+        this.myList = list;
+      }
+    );
+  }
+
+  ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 
   deleteObject(id: number) {
-    console.log('deleteObject', id);
-    this.myList = this.myList.filter((item) => item.id !== id);
+    this.myListService.deleteObjectById(id);
   }
 }
