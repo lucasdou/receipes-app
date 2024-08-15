@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Receipe } from '../../object/Receipe';
+import { Component} from '@angular/core';
+import { Recipe } from '../../object/Recipe';
 import { MyListService } from '../../service/mylist/my-list.service';
 import { Subscription } from 'rxjs';
 
@@ -13,18 +13,18 @@ import { Subscription } from 'rxjs';
 export class MyListComponent {
   public myListService: MyListService;
 
-  myList: Array<Receipe>;
+  myList: Array<Recipe>;
   private subscription: Subscription;
 
   constructor(listService: MyListService) {
     this.myListService = listService;
-    this.myList = this.myListService.getMyReceipesList();
+    this.myList = this.myListService.getMyRecipesList();
     this.subscription = new Subscription();
   }
 
   ngOnInit(): void {
     this.subscription = this.myListService.myList$.subscribe(
-      (list: Array<Receipe>) => {
+      (list: Array<Recipe>) => {
         this.myList = list;
       }
     );

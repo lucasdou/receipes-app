@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Receipe } from '../../object/Receipe';
+import { Recipe } from '../../object/Recipe';
 import { MyListService } from '../../service/mylist/my-list.service';
-import { DataService } from '../../service/receipe/data.service';
+import { DataService } from '../../service/recipe/data.service';
 
 @Component({
   selector: 'app-list-item',
@@ -11,7 +11,7 @@ import { DataService } from '../../service/receipe/data.service';
   styleUrl: './list-item.component.css'
 })
 export class ListItemComponent {
-  public receipesList: Array<Receipe> = new Array<Receipe>();
+  public RecipesList: Array<Recipe> = new Array<Recipe>();
 
   public myDataService: DataService;
   public myListService: MyListService;
@@ -20,35 +20,35 @@ export class ListItemComponent {
     this.myDataService = dataService
     this.myListService = listService;
     
-    this.receipesList = this.myDataService.getReceipesList();
+    this.RecipesList = this.myDataService.getRecipesList();
   }
 
-  //Action for receipe list item//
+  //Action for Recipe list item//
 
-  // Receipe object is created and emitted to the parent component
+  // Recipe object is created and emitted to the parent component
   requestAddObject() {
-    const newReceipe: Receipe = { name: 'receipe1', description: 'description1',  ingredients: ['ingredients1', 'inredient2'], instructions: 'instructions1'};
-    this.receipesList = this.myDataService.addObject(newReceipe);
+    const newRecipe: Recipe = { name: 'Recipe1', description: 'description1',  ingredients: ['ingredients1', 'inredient2'], instructions: 'instructions1'};
+    this.RecipesList = this.myDataService.addObject(newRecipe);
   }
 
-  // Delete request for a receipe with it's id is emitted to the parent component
+  // Delete request for a Recipe with it's id is emitted to the parent component
   requestDeleteObject(id: number) {
     this.myListService.deleteObjectById(id);
-    this.receipesList = this.myDataService.deleteObjectById(id);
+    this.RecipesList = this.myDataService.deleteObjectById(id);
   }
 
   //Action for "my list" list item//
 
   // 
-  requestReceipeToMyList(receipe: Receipe) {
-    this.myListService.addToMyList(receipe);
+  requestRecipeToMyList(Recipe: Recipe) {
+    this.myListService.addToMyList(Recipe);
   }
 
-  removeReceipeFromMyList(id: number) {
+  removeRecipeFromMyList(id: number) {
     this.myListService.deleteObjectById(id);
   }
 
-  isInMyList(receipe: Receipe) {
-    return this.myListService.getMyReceipesList().includes(receipe);
+  isInMyList(Recipe: Recipe) {
+    return this.myListService.getMyRecipesList().includes(Recipe);
   }
 }

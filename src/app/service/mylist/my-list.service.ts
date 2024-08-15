@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Receipe } from '../../object/Receipe';
+import { Recipe } from '../../object/Recipe';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -7,26 +7,26 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class MyListService {
 
-  public myReceipesList: Array<Receipe> = new Array<Receipe>();
+  public myRecipesList: Array<Recipe> = new Array<Recipe>();
 
-  private myListSubject = new BehaviorSubject<Receipe[]>(this.myReceipesList);
+  private myListSubject = new BehaviorSubject<Recipe[]>(this.myRecipesList);
 
   myList$ = this.myListSubject.asObservable();
 
 
-  getMyReceipesList() {
-    return this.myReceipesList;
+  getMyRecipesList() {
+    return this.myRecipesList;
   }
 
-  addToMyList(receipe: Receipe) : Array<Receipe> {
-    this.myReceipesList.push(receipe);
-    this.myListSubject.next(this.myReceipesList);
-    return this.myReceipesList;
+  addToMyList(Recipe: Recipe) : Array<Recipe> {
+    this.myRecipesList.push(Recipe);
+    this.myListSubject.next(this.myRecipesList);
+    return this.myRecipesList;
   }
 
-  deleteObjectById(id: number) : Array<Receipe>{
-    this.myReceipesList = this.myReceipesList.filter((item) => item.id !== id);
-    this.myListSubject.next(this.myReceipesList);
-    return this.myReceipesList;
+  deleteObjectById(id: number) : Array<Recipe>{
+    this.myRecipesList = this.myRecipesList.filter((item) => item.id !== id);
+    this.myListSubject.next(this.myRecipesList);
+    return this.myRecipesList;
   }
 }
