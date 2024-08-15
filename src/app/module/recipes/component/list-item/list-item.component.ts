@@ -1,7 +1,7 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { Recipe } from '../../object/Recipe';
 import { MyListService } from '../../service/mylist/my-list.service';
-import { DataService } from '../../service/recipe/data.service';
+import { RecipeService } from '../../service/recipe/recipe.service';
 
 @Component({
   selector: 'app-list-item',
@@ -13,14 +13,14 @@ import { DataService } from '../../service/recipe/data.service';
 export class ListItemComponent {
   public RecipesList: Array<Recipe> = new Array<Recipe>();
 
-  public myDataService: DataService;
+  public myRecipeService: RecipeService;
   public myListService: MyListService;
 
-  constructor(dataService: DataService, listService: MyListService) {
-    this.myDataService = dataService
+  constructor(recipeService: RecipeService, listService: MyListService) {
+    this.myRecipeService = recipeService
     this.myListService = listService;
     
-    this.RecipesList = this.myDataService.getRecipesList();
+    this.RecipesList = this.myRecipeService.getRecipesList();
   }
 
   //Action for Recipe list item//
@@ -28,13 +28,13 @@ export class ListItemComponent {
   // Recipe object is created and emitted to the parent component
   requestAddObject() {
     const newRecipe: Recipe = { name: 'Recipe1', description: 'description1',  ingredients: ['ingredients1', 'inredient2'], instructions: 'instructions1'};
-    this.RecipesList = this.myDataService.addObject(newRecipe);
+    this.RecipesList = this.myRecipeService.addObject(newRecipe);
   }
 
   // Delete request for a Recipe with it's id is emitted to the parent component
   requestDeleteObject(id: number) {
     this.myListService.deleteObjectById(id);
-    this.RecipesList = this.myDataService.deleteObjectById(id);
+    this.RecipesList = this.myRecipeService.deleteObjectById(id);
   }
 
   //Action for "my list" list item//

@@ -4,7 +4,7 @@ import { Recipe } from '../../object/Recipe';
 @Injectable({
   providedIn: 'root',
 })
-export class DataService {
+export class RecipeService {
   public recipesList: Array<Recipe>;
 
   constructor() {

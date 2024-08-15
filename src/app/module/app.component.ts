@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { ListItemComponent } from './component/list-item/list-item.component';
-import { MyListComponent } from './component/my-list/my-list.component';
-import { NavbarComponent } from './navbar/navbar.component';
+import { ListItemComponent} from './recipes/component/list-item/list-item.component';
+import { MyListComponent } from './recipes/component/my-list/my-list.component';
+import { NavbarComponent } from './recipes/component/navbar/navbar.component';
 
 @Component({
   selector: 'app-root',
